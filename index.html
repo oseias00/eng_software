@@ -7,51 +7,66 @@
   <title>Gerenciamento de Funcionários</title>
 </head>
 <body>
-  <h1>Gerenciamento de Funcionários</h1>
+  <div class="container">
+    <h1>Gerenciamento de Funcionários</h1>
 
-  <h2>Cadastrar / Editar Funcionário</h2>
-  <form id="form-funcionario">
-    <input type="hidden" id="indice-edicao" />
-    
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" required placeholder="Digite o nome completo" />
+    <h2>Cadastrar / Editar Funcionário</h2>
+    <form id="form-funcionario" class="formulario">
+      <input type="hidden" id="indice-edicao" />
+      
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" required placeholder="Digite o nome completo" />
 
-    <label for="cargo">Cargo:</label>
-    <select id="cargo" required>
-      <option value="">Selecione um cargo</option>
-      <option value="Gerente">Gerente</option>
-      <option value="Analista de Requisitos">Analista de Requisitos</option>
-      <option value="Desenvolvedor">Desenvolvedor</option>
-      <option value="Testador">Testador</option>
-    </select>
+      <label for="cargo">Cargo:</label>
+      <select id="cargo" required>
+        <option value="">Selecione um cargo</option>
+        <option value="Gerente">Gerente</option>
+        <option value="Analista de Requisitos">Analista de Requisitos</option>
+        <option value="Desenvolvedor">Desenvolvedor</option>
+        <option value="Testador">Testador</option>
+      </select>
 
-    <label for="genero">Gênero:</label>
-    <input type="text" id="genero" required placeholder="Ex: Masculino, Feminino" />
+      <label for="genero">Gênero:</label>
+      <input type="text" id="genero" required placeholder="Ex: Masculino, Feminino" />
 
-    <label for="salario">Salário:</label>
-    <input type="number" id="salario" required placeholder="Ex: 3500" />
+      <label for="salario">Salário:</label>
+      <input type="number" id="salario" required placeholder="Ex: 3500" />
 
-    <label for="dataEntrada">Data de Entrada:</label>
-    <input type="date" id="dataEntrada" required />
+      <label for="dataEntrada">Data de Entrada:</label>
+      <input type="date" id="dataEntrada" required />
 
-    <button type="submit">Salvar Funcionário</button>
-  </form>
+      <button type="submit" class="btn">Salvar Funcionário</button>
+    </form>
 
-  <h2>Lista de Funcionários</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Cargo</th>
-        <th>Gênero</th>
-        <th>Salário</th>
-        <th>Data de Entrada</th>
-        <th>Código</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody id="lista-funcionarios"></tbody>
-  </table>
+    <h2>Lista de Funcionários</h2>
+
+    <div class="filtro">
+      <label for="filtro-cargo">Filtrar por Cargo:</label>
+      <select id="filtro-cargo">
+        <option value="">Todos</option>
+        <option value="Gerente">Gerente</option>
+        <option value="Analista de Requisitos">Analista de Requisitos</option>
+        <option value="Desenvolvedor">Desenvolvedor</option>
+        <option value="Testador">Testador</option>
+      </select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cargo</th>
+          <th>Gênero</th>
+          <th>Salário</th>
+          <th>Data de Entrada</th>
+          <th>Código</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="lista-funcionarios"></tbody>
+    </table>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
