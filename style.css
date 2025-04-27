@@ -3,37 +3,37 @@ body {
     background-color: #f2f6fc;
     margin: 0;
     padding: 20px;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 900px;
     margin: 0 auto;
     background-color: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  h1, h2 {
+}
+
+h1, h2 {
     color: #2c3e50;
-  }
-  
-  .formulario label {
+}
+
+.formulario label {
     display: block;
     margin-top: 10px;
     color: #34495e;
     font-weight: bold;
-  }
-  
-  .formulario input, .formulario select {
+}
+
+.formulario input, .formulario select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 8px;
-  }
-  
-  .btn {
+}
+
+.btn {
     background-color: #3498db;
     color: white;
     border: none;
@@ -42,52 +42,53 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background-color: #2980b9;
-  }
-  
-  .filtro {
+}
+
+.filtro {
     margin: 20px 0;
-  }
-  
-  #filtro-cargo {
+}
+
+#filtro-cargo {
     padding: 8px;
     width: 100%;
     max-width: 300px;
     border-radius: 8px;
     border: 1px solid #ccc;
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-  }
-  
-  th, td {
+    overflow-x: auto;
+}
+
+th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
-  }
-  
-  th {
+}
+
+th {
     background-color: #ecf0f1;
     font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
+}
+
+tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  tr.cargo-titulo td {
+}
+
+tr.cargo-titulo td {
     background-color: #dcdde1;
     font-weight: bold;
     font-size: 1.1em;
-  }
-  
-  button {
+}
+
+button {
     background-color: #2ecc71;
     border: none;
     padding: 6px 12px;
@@ -95,17 +96,135 @@ body {
     color: white;
     cursor: pointer;
     margin-right: 5px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #27ae60;
-  }
-  
-  button:nth-child(2) {
+}
+
+button:nth-child(2) {
     background-color: #e74c3c;
-  }
-  
-  button:nth-child(2):hover {
+}
+
+button:nth-child(2):hover {
     background-color: #c0392b;
-  }
-  
+}
+
+/*Celulares*/
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .formulario input, .formulario select {
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    #filtro-cargo {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    tr.cargo-titulo td {
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+
+    button:nth-child(2) {
+        width: 100%;
+    }
+
+    .filtro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filtro select {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    table {
+        overflow-x: auto;
+        display: block;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/*Tablets*/
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .formulario input, .formulario select {
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #filtro-cargo {
+        width: 100%;
+    }
+
+    table th, table td {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/*Desktops*/
+@media screen and (min-width: 769px) {
+    .container {
+        padding: 30px;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+
+    table th, table td {
+        padding: 12px;
+    }
+
+    button {
+        padding: 8px 15px;
+    }
+}
