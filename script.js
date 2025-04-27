@@ -13,6 +13,7 @@ function gerarCodigo() {
 const form = document.getElementById("form-funcionario");
 const listaTabela = document.getElementById("lista-funcionarios");
 const indiceEdicao = document.getElementById("indice-edicao");
+const filtroCargo = document.getElementById("filtro-cargo");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -25,23 +26,22 @@ form.addEventListener("submit", function (e) {
   const dataEntrada = document.getElementById("dataEntrada").value;
 
   const funcionario = {
-    codigo: gerarCodigo(),
-    nome,
-    cargo,
-    genero,
-    salario,
-    dataEntrada,
+      codigo: gerarCodigo(),
+      nome,
+      cargo,
+      genero,
+      salario,
+      dataEntrada,
   };
 
   if (indiceEdicao.value !== "") {
-    const index = parseInt(indiceEdicao.value);
-    funcionarios[index] = {
-      ...funcionario,
-      codigo: funcionarios[index].codigo, 
-    };
-    indiceEdicao.value = ""; 
+      funcionarios[indiceEdicao.value] = {
+          ...funcionario,
+          codigo: funcionarios[indiceEdicao.value].codigo,
+      };
+      indiceEdicao.value = "";
   } else {
-    funcionarios.push(funcionario);
+      funcionarios.push(funcionario);
   }
 
   salvarFuncionarios(funcionarios);
@@ -49,33 +49,32 @@ form.addEventListener("submit", function (e) {
   atualizarTabela();
 });
 
-function filtrarFuncionarios(filtro) {
-  const funcionarios = obterFuncionarios();
-  if (filtro) {
-    return funcionarios.filter(f => f.cargo === filtro);
-  }
-  return funcionarios;
-}
+filtroCargo.addEventListener("change", atualizarTabela);
 
-function atualizarTabela(filtro = "") {
-  const funcionarios = filtrarFuncionarios(filtro);
+function atualizarTabela() {
+  const funcionarios = obterFuncionarios();
+  const filtro = filtroCargo.value;
   listaTabela.innerHTML = "";
 
-  funcionarios.forEach((f, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${f.nome}</td>
-      <td>${f.cargo}</td>
-      <td>${f.genero}</td>
-      <td>R$ ${f.salario.toFixed(2)}</td>
-      <td>${new Date(f.dataEntrada).toLocaleDateString("pt-BR")}</td>
-      <td>${f.codigo}</td>
-      <td>
-        <button onclick="editarFuncionario(${index})">Editar</button>
-        <button onclick="excluirFuncionario(${index})">Excluir</button>
-      </td>
-    `;
-    listaTabela.appendChild(tr);
+  const funcionariosFiltrados = funcionarios.filter(f => !filtro || f.cargo === filtro);
+
+  funcionariosFiltrados.forEach((f, index) => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+          <td>${f.nome}</td>
+          <td>${f.cargo}</td>
+          <td>${f.genero}</td>
+          <td>R$ ${f.salario.toFixed(2)}</td>
+          <td>${new Date(f.dataEntrada).toLocaleDateString("pt-BR")}</td>
+          <td>${f.codigo}</td>
+          <td>
+              <button onclick="editarFuncionario(${index})">Editar</button>
+              <button onclick="excluirFuncionario(${index})">Excluir</button>
+          </td>
+      `;
+
+      listaTabela.appendChild(tr);
   });
 }
 
@@ -88,23 +87,16 @@ function editarFuncionario(index) {
   document.getElementById("genero").value = f.genero;
   document.getElementById("salario").value = f.salario;
   document.getElementById("dataEntrada").value = f.dataEntrada;
-  indiceEdicao.value = index;  
+  indiceEdicao.value = index;
 }
 
-// Função de exclusão
 function excluirFuncionario(index) {
   const funcionarios = obterFuncionarios();
   if (confirm("Deseja realmente excluir este funcionário?")) {
-    funcionarios.splice(index, 1); 
-    salvarFuncionarios(funcionarios); 
-    atualizarTabela(); 
+      funcionarios.splice(index, 1);
+      salvarFuncionarios(funcionarios);
+      atualizarTabela();
   }
 }
 
-// Evento para o filtro de cargo
-document.getElementById("filtro-cargo").addEventListener("change", function () {
-  const filtro = this.value;
-  atualizarTabela(filtro); 
-});
-
-window.onload = atualizarTabela; 
+window.onload = atualizarTabela;
